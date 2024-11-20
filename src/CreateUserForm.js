@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 const CreateUserForm = () => {
@@ -8,7 +8,7 @@ const CreateUserForm = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
-    (newUser) => axios.post("http://localhost:5000/users", newUser),
+    (newUser) => axios.post("http://localhost:5001/users", newUser),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("users"); // Update data if needed

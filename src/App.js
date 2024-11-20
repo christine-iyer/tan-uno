@@ -1,5 +1,5 @@
 import React from "react";
-import CreateUserForm from "./CreateUserForm";
+import CreateUserForm from "./CreateUserForm.js";
 
 const App = () => {
   return (
