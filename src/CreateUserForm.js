@@ -7,16 +7,14 @@ const CreateUserForm = () => {
   const [age, setAge] = useState("");
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(
-    (newUser) => axios.post("http://localhost:2028/users", newUser),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("users"); // Update data if needed
-        setName("");
-        setAge("");
-      },
-    }
-  );
+  const mutation = useMutation({
+    mutationFn: (newUser) => axios.post("http://localhost:2028/users", newUser),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["users"]); // Ensure this matches your query keys
+      setName("");
+      setAge("");
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
