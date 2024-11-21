@@ -11,7 +11,7 @@ app.use(express.json());
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb://localhost:27017/tanstackapp")
+  .connect(encodeURIComponent("mongodb://localhost:27017//edithbird:C0nfidenceClub!@cluster0.w3guwmj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"))
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
