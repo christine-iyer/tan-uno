@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import userRoutes from "./routes/api/userRoutes.js"; // Ensure correct file path
 
 dotenv.config();
 
@@ -15,24 +16,12 @@ app.use(express.json());
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MotngoDB connected"))
-  .catch((err) => console.error(err));
-
-const User = mongoose.model("User", userSchema);
-const userRoutes = require('./routes/userRoutes'); // Adjust the path
-app.use('/api', userRoutes);
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 // Routes
-app.post("/users", async (req, res) => {
-  try {
-    const { name, age } = req.body;
-    const newUser = new User({ name, age });
-    await newUser.save();
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+app.use('/api', userRoutes);
+app.use('/users', newUser)
 
 // Start Server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

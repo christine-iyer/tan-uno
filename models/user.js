@@ -1,9 +1,10 @@
-const { Schema, model }  = require('mongoose');
-// Schema and Model
+import { Schema, model } from "mongoose";
+
+// User Schema
 const userSchema = new Schema({
-     name: { type: String, required: true },
-     age: { type: Number, required: true },
-   });
-   
- 
-module.exports = model('User', userSchema)  
+  name: { type: String, required: true },
+  age: { type: Number, required: true },
+});
+
+// Export Model
+export default model("User", userSchema);
