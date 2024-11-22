@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -21,9 +22,9 @@ const useUpdateUser = () => {
   const queryClient = useQueryClient();
 
   return useMutation(updateUser, {
-    onSuccess: (data) => {
-      console.log('User updated successfully:', data);
-      queryClient.invalidateQueries(['users']); // Refresh the users query
+    onSuccess: () => {
+      console.log('User updated successfully:');
+      queryClient.invalidateQueries({ queryKeys: ["users"] }); // Refresh the users query
     },
     onError: (error) => {
       console.error('Error updating user:', error.message);
