@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchUsers = async () => {
-  const response = await fetch("http://localhost:2028/api/users");
+  const response = await fetch("http://localhost:2028/api/users"); // Corrected URL
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }

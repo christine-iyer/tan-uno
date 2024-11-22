@@ -8,7 +8,7 @@ const CreateUserForm = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (newUser) => axios.post("http://localhost:2028/users", newUser),
+    mutationFn: (newUser) => axios.post("http://localhost:2028/api/users", newUser),
     onSuccess: () => {
       queryClient.invalidateQueries(["users"]); // Ensure this matches your query keys
       setName("");

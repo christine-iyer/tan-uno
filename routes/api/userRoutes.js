@@ -3,8 +3,8 @@ import User from "../../models/user.js"; // Adjust path as needed
 
 const router = express.Router();
 
-// GET /users
-router.get("/users", async (req, res) => {
+// GET /
+router.get("/", async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -13,8 +13,8 @@ router.get("/users", async (req, res) => {
   }
 });
 
-// POST /users
-router.post("/users", async (req, res) => {
+// POST /
+router.post("/", async (req, res) => {
   try {
     const { name, age } = req.body;
     const newUser = new User({ name, age });
@@ -24,12 +24,13 @@ router.post("/users", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-router.put("/users/:id", async (req, res) => {
+
+// PUT /:id
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { name, age } = req.body;
 
   try {
-    // Update user by ID
     const updatedUser = await User.findByIdAndUpdate(
       id,
       { name, age },
@@ -45,6 +46,5 @@ router.put("/users/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 export default router;
