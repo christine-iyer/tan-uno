@@ -9,6 +9,7 @@ const fetchUsers = async () => {
   return response.json();
 };
 
+
 const ListUsers = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['users'], // Unique query key
