@@ -7,7 +7,6 @@ const App = () => {
     <div>
       <h1>Create User</h1>
       <CreateUserForm />
-      <ListUsers/>
  <ListUsersToEdit/> 
 
     </div>
