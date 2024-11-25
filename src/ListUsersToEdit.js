@@ -23,6 +23,14 @@ const UserList = () => {
     },
   });
 
+  // Delete mutation
+  const deleteMutation = useMutation({
+    mutationFn: (_id) => axios.delete(`http://localhost:2028/api/users/${_id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+
   // Editable state for inline editing
   const [editableUser, setEditableUser] = useState(null);
   const [tempName, setTempName] = useState("");
@@ -46,12 +54,9 @@ const UserList = () => {
     setEditableUser(null); // Exit edit mode
   };
 
-  const deleteMutation = useMutation({
-    mutationFn: (_id) => axios.delete(`http://localhost:2028/api/users/${_id}`),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
-    },
-  });
+  const handleDelete = (_id) => {
+    deleteMutation.mutate(_id);
+  };
 
   return (
     <div>
@@ -72,8 +77,6 @@ const UserList = () => {
                 />
                 <button onClick={() => handleSaveClick(user)}>Save</button>
                 <button onClick={handleCancelClick}>Cancel</button>
-                <button onClick={deleteMutation}>Delete</button>
-                
               </>
             ) : (
               <>
@@ -81,6 +84,7 @@ const UserList = () => {
                   {user.name} - {user.age}
                 </span>
                 <button onClick={() => handleEditClick(user)}>Edit</button>
+                <button onClick={() => handleDelete(user._id)}>Delete</button>
               </>
             )}
           </li>
