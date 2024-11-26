@@ -37,7 +37,7 @@ const CreateUserForm = () => {
         onChange={(e) => setAge(e.target.value)}
         required
       />
-      <button type="submit">Submit</button>
+      <button type="submit" style={{color: "yellow"}}>Submit</button>
     </form>
   );
 };
