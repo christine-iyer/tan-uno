@@ -1,6 +1,6 @@
 import React from "react";
-import CreateUserForm from "./CreateUserForm.js";
-import ListUsersToEdit from "./ListUsersToEdit.js";
+import CreateUserForm from "./components/users/CreateUserForm.js";
+import ListUsersToEdit from "./components/users/ListUsersToEdit.js";
 const App = () => {
   return (
     <div>

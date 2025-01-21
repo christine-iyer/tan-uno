@@ -31,24 +31,26 @@ router.delete("/:id", async (req, res) => {
 // POST /
 router.post("/", async (req, res) => {
   try {
-    const { name, age } = req.body;
-    const newUser = new User({ name, age });
+    const { username, email, password } = req.body;
+    const newUser = new User({ username, email, password });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(400).json({ error: err.message }); // Return specific validation errors
   }
 });
+
 
 // PUT /:id
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, age } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { name, age },
+      { username, email, password },
       { new: true, runValidators: true } // Return the updated document
     );
 
