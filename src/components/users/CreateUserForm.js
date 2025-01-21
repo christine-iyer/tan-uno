@@ -17,6 +17,9 @@ const CreateUserForm = () => {
       setEmail("");
       setPassword("");
     },
+    onError: (error) => {
+      alert(error.response?.data?.message || "An error occurred");
+    }
   });
 
   const handleSubmit = (e) => {
