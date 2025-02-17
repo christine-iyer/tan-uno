@@ -9,7 +9,7 @@ const UserList = () => {
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:3001/api/user");
+      const response = await axios.get("http://localhost:3001");
       return response.data;
     },
   });
